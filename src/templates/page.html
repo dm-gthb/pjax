@@ -1,27 +1,34 @@
 ---
 title: Index page
+
 ---
+
 {% extends "layouts/_layout.html" %}
 
 {% block content %}
 
-	{# variable example #}
-	<h1>{{title}}</h1>
+	<h1>Empty</h1>
 
+	<div class="items">
+    <a href="single1.html" class="item" style="background-image: url(img/1.jpg)">
+      <h2 class="item__title">title1</h2>
+    </a>
 
-	{# partial example #}
-	{% include "partials/_header.html" %}
+    <a href="single2.html" class="item" style="background-image: url(img/2.jpg)">
+      <h2 class="item__title">title2</h2>
+    </a>
 
-	{# mixin example #}
-	{{mixins.icon('facebook')}}
+    <a href="single3.html" class="item" style="background-image: url(img/3.jpg)">
+      <h2 class="item__title">title3</h2>
+    </a>
 
+    <a href="single4.html" class="item" style="background-image: url(img/4.jpg)">
+      <h2 class="item__title">title4</h2>
+    </a>
 
-	{# data usage example #}
-		{% import "data/data.html" as tests %}
-
-		{% for test in tests.list %}
-		<li>{{test.title}}</li>
-		{% endfor %}
-	{# end of example #}
+    <a href="single5.html" class="item" style="background-image: url(img/5.jpg)">
+      <h2 class="item__title">title5</h2>
+    </a>
+  </div>
 
 {% endblock %}
