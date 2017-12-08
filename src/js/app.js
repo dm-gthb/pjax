@@ -1,9 +1,9 @@
 import Barba from 'barba.js';
 import {TimelineMax} from 'gsap';
-
+var lastClicked;
 
 Barba.Dispatcher.on('linkClicked', function(el) {
-  // lastClicked = el;
+  lastClicked = el;
 });
 
 var ExpandTransition = Barba.BaseTransition.extend({
@@ -15,9 +15,22 @@ var ExpandTransition = Barba.BaseTransition.extend({
 
   zoom: function() {
     var deferred = Barba.Utils.deferred();
-
     let tl = new TimelineMax();
-    tl.to('body',1,{y:100,onComplete: function() {
+
+    let left = lastClicked.getBoundingClientRect().left;
+
+    let cloned = lastClicked.cloneNode(true);
+
+    let screenWidth = $(window).width();
+
+    cloned.classList.add('is-cloned');
+
+
+    this.oldContainer.appendChild(cloned);
+
+    tl.set(cloned, { x: left });
+
+    tl.to(cloned,1,{x:0, width:screenWidth, onComplete: function() {
       deferred.resolve();
     }});
     return deferred.promise;
